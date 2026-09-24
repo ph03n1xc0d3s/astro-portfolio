@@ -62,13 +62,13 @@
         <span class="stat-label">Years with Symfony</span>
       </div>
     </div>
+  </div>
 
-    <div class="hero-scroll">
-      <div class="scroll-indicator">
-        <div class="scroll-dot"></div>
-      </div>
-      <span>Scroll to explore</span>
+  <div class="hero-scroll">
+    <div class="scroll-indicator">
+      <div class="scroll-dot"></div>
     </div>
+    <span>Scroll to explore</span>
   </div>
 </section>
 
@@ -141,6 +141,7 @@
     position: relative;
     overflow: hidden;
     padding-top: var(--nav-height);
+    padding-bottom: 6rem;
   }
 
   .hero-bg {
@@ -325,6 +326,8 @@
   .hero-scroll {
     position: absolute;
     bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -332,6 +335,7 @@
     color: var(--text-muted);
     font-size: 0.75rem;
     animation: fade-in 1s ease-out 1s backwards;
+    z-index: 2;
   }
 
   .scroll-indicator {
