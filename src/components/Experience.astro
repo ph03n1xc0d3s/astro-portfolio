@@ -21,20 +21,20 @@ const experiences = [
 
 const techEcosystems = [
   {
-    label: "Backend Ecosystems",
-    items: ["PHP · Symfony · Laravel · CodeIgniter", "Node.js · NestJS · Express.js", "Go"]
+    label: "Backend",
+    items: ["PHP", "Symfony", "Laravel", "CodeIgniter", "Node.js", "NestJS", "Express.js", "Go"]
   },
   {
-    label: "Frontend Ecosystems",
-    items: ["React · TypeScript · Next.js", "Vite · Zustand", "HTML · CSS · JavaScript"]
+    label: "Frontend",
+    items: ["React", "TypeScript", "Next.js", "Vite", "Zustand", "HTML/CSS", "JavaScript"]
   },
   {
-    label: "Databases",
-    items: ["PostgreSQL · MySQL · MongoDB", "Redis · Elasticsearch · OpenSearch", "Doctrine ORM · TypeORM"]
+    label: "Databases & Data",
+    items: ["PostgreSQL", "MySQL", "MongoDB", "Redis", "Elasticsearch", "OpenSearch", "Doctrine", "TypeORM"]
   },
   {
     label: "Infrastructure",
-    items: ["Docker · Nginx · PHP-FPM", "AWS · Render · Linux", "RabbitMQ · SQS · CI/CD"]
+    items: ["Docker", "Nginx", "PHP-FPM", "AWS", "Render", "Linux", "RabbitMQ", "SQS", "CI/CD"]
   }
 ];
 ---
@@ -92,9 +92,9 @@ const techEcosystems = [
         {techEcosystems.map((eco, i) => (
           <div class="eco-card glass-card">
             <h4 class="eco-label">{eco.label}</h4>
-            <div class="eco-items">
+            <div class="exp-tags" style="margin-top: 0.5rem;">
               {eco.items.map(item => (
-                <span class="eco-item">{item}</span>
+                <span class="exp-tag">{item}</span>
               ))}
             </div>
           </div>
@@ -273,18 +273,6 @@ const techEcosystems = [
     margin-bottom: var(--space-md);
   }
 
-  .eco-items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-
-  .eco-item {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-  }
 
   @media (max-width: 768px) {
     .timeline-item {
