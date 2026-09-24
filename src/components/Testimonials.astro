@@ -1,0 +1,293 @@
+---
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    role: "CEO, TechStartup",
+    avatar: "SJ",
+    text: "Alex is an exceptional developer who consistently delivers high-quality work. Their attention to detail and ability to understand complex requirements made our project a huge success.",
+    rating: 5,
+    color: "var(--accent-primary)"
+  },
+  {
+    name: "Michael Park",
+    role: "CTO, InnovateCo",
+    avatar: "MP",
+    text: "Working with Alex was a game-changer for our team. They brought fresh ideas, clean code practices, and an incredible work ethic. Our platform performance improved by 3x.",
+    rating: 5,
+    color: "var(--accent-secondary)"
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Product Manager, DesignLab",
+    avatar: "ER",
+    text: "Alex has a rare combination of technical expertise and design sensibility. They translated our Figma designs into pixel-perfect, responsive interfaces that exceeded our expectations.",
+    rating: 5,
+    color: "var(--accent-tertiary)"
+  },
+  {
+    name: "David Kim",
+    role: "Founder, CloudSys",
+    avatar: "DK",
+    text: "Reliable, skilled, and communicative. Alex delivered our MVP ahead of schedule and stayed on to help us scale. I wouldn't hesitate to work with them again.",
+    rating: 5,
+    color: "var(--accent-warm)"
+  }
+];
+---
+
+<section class="testimonials section" id="testimonials">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">What People Say</h2>
+      <p class="section-subtitle">
+        Feedback from clients and colleagues I've had the pleasure to work with
+      </p>
+    </div>
+
+    <div class="testimonial-track" id="testimonial-track">
+      <div class="testimonial-slider" id="testimonial-slider">
+        {testimonials.map((t, index) => (
+          <div class="testimonial-card glass-card" style={`--card-color: ${t.color}`}>
+            <div class="quote-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" opacity="0.15">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+            </div>
+            <p class="testimonial-text">{t.text}</p>
+            <div class="testimonial-rating">
+              {Array.from({length: t.rating}).map(() => (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent-warm)">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              ))}
+            </div>
+            <div class="testimonial-author">
+              <div class="author-avatar" style={`background: ${t.color}`}>
+                {t.avatar}
+              </div>
+              <div>
+                <h4 class="author-name">{t.name}</h4>
+                <p class="author-role">{t.role}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="testimonial-nav">
+      <button class="nav-btn" id="testimonial-prev" aria-label="Previous testimonial">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </button>
+      <div class="testimonial-dots" id="testimonial-dots"></div>
+      <button class="nav-btn" id="testimonial-next" aria-label="Next testimonial">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const slider = document.getElementById('testimonial-slider');
+  const track = document.getElementById('testimonial-track');
+  const prevBtn = document.getElementById('testimonial-prev');
+  const nextBtn = document.getElementById('testimonial-next');
+  const dotsContainer = document.getElementById('testimonial-dots');
+
+  if (slider && track && prevBtn && nextBtn && dotsContainer) {
+    const cards = slider.querySelectorAll('.testimonial-card');
+    let currentIndex = 0;
+    let visibleCards = getVisibleCards();
+
+    function getVisibleCards() {
+      if (window.innerWidth <= 640) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 2;
+    }
+
+    const totalSlides = Math.max(1, cards.length - visibleCards + 1);
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.className = `dot ${i === 0 ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    function goToSlide(index: number) {
+      currentIndex = Math.max(0, Math.min(index, totalSlides - 1));
+      const cardWidth = (cards[0] as HTMLElement).offsetWidth;
+      const gap = 24;
+      slider.style.transform = `translateX(-${currentIndex * (cardWidth + gap)}px)`;
+
+      dotsContainer.querySelectorAll('.dot').forEach((d, i) => {
+        d.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+    nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+    window.addEventListener('resize', () => {
+      visibleCards = getVisibleCards();
+      goToSlide(0);
+    });
+
+    // Auto-slide
+    let autoSlide = setInterval(() => {
+      goToSlide(currentIndex >= totalSlides - 1 ? 0 : currentIndex + 1);
+    }, 5000);
+
+    track.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    track.addEventListener('mouseleave', () => {
+      autoSlide = setInterval(() => {
+        goToSlide(currentIndex >= totalSlides - 1 ? 0 : currentIndex + 1);
+      }, 5000);
+    });
+  }
+</script>
+
+<style>
+  .testimonial-track {
+    overflow: hidden;
+    margin: 0 -var(--space-md);
+    padding: 0 var(--space-md);
+  }
+
+  .testimonial-slider {
+    display: flex;
+    gap: var(--space-xl);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .testimonial-card {
+    min-width: calc(50% - var(--space-xl) / 2);
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-color);
+    opacity: 0.6;
+  }
+
+  .quote-icon {
+    margin-bottom: var(--space-lg);
+    color: var(--card-color);
+  }
+
+  .testimonial-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    flex: 1;
+    margin-bottom: var(--space-xl);
+    font-style: italic;
+  }
+
+  .testimonial-rating {
+    display: flex;
+    gap: 2px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  .author-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: white;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .author-role {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .testimonial-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+  }
+
+  .nav-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    transition: all var(--transition-base);
+  }
+
+  .nav-btn:hover {
+    background: var(--bg-glass-strong);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+  }
+
+  .testimonial-dots {
+    display: flex;
+    gap: var(--space-sm);
+  }
+
+  :global(.dot) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-medium);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    padding: 0;
+  }
+
+  :global(.dot.active) {
+    background: var(--accent-primary);
+    width: 24px;
+    border-radius: var(--radius-full);
+  }
+
+  @media (max-width: 640px) {
+    .testimonial-card {
+      min-width: 100%;
+    }
+  }
+</style>

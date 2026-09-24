@@ -1,0 +1,257 @@
+---
+---
+<section class="about section" id="about">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-label">About Me</span>
+      <h2 class="section-title">Engineering at Scale</h2>
+      <p class="section-subtitle">
+        From high-throughput backends to AI-powered products — building software that performs
+      </p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-image animate-on-scroll">
+        <div class="image-wrapper">
+          <div class="image-placeholder">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+          </div>
+          <div class="image-border-glow"></div>
+        </div>
+        <div class="about-floating-card card-1">
+          <span class="floating-emoji">⚡</span>
+          <span>~140 req/s</span>
+        </div>
+        <div class="about-floating-card card-2">
+          <span class="floating-emoji">🏗️</span>
+          <span>SaaS Architect</span>
+        </div>
+      </div>
+
+      <div class="about-content animate-on-scroll">
+        <div class="about-text">
+          <p>
+            I'm a senior software developer with 6+ years of experience specializing in
+            scalable backend systems, SaaS architecture, API development, and modern web
+            applications. I work across the full stack — from crafting production-grade
+            APIs with PHP/Symfony, Node.js, and Go, to building dynamic frontends with
+            React, TypeScript, and Next.js.
+          </p>
+          <p>
+            My work includes designing multi-tenant SaaS platforms with tenant isolation,
+            RBAC, and secure API architectures. I've built high-throughput systems, including
+            a GPS tracking backend handling approximately 140 requests per second. I'm also
+            experienced with asynchronous architectures using RabbitMQ, Redis, and SQS.
+          </p>
+          <p>
+            More recently, I've been building AI-powered functionality using LLM APIs,
+            LangChain, LangGraph, and agent frameworks — integrating intelligent capabilities
+            into production applications. I'm passionate about clean architecture, performance
+            optimization, and shipping software that works reliably at scale.
+          </p>
+        </div>
+
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                <line x1="6" y1="18" x2="6.01" y2="18"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Scalable Backends</h4>
+              <p>High-throughput APIs & microservices</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Security-First</h4>
+              <p>RBAC, tenant isolation, secure auth</p>
+            </div>
+          </div>
+          <div class="highlight-item">
+            <div class="highlight-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <div>
+              <h4>Performance</h4>
+              <p>Optimized for production-grade loads</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: var(--space-4xl);
+    align-items: center;
+  }
+
+  .about-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+
+  .image-wrapper {
+    position: relative;
+    width: 320px;
+    height: 380px;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+  }
+
+  .image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+  }
+
+  .image-border-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--radius-xl) + 2px);
+    background: var(--gradient-primary);
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(8px);
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .about-floating-card {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1rem;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    animation: float 6s ease-in-out infinite;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .card-1 {
+    top: 10%;
+    right: -10%;
+    animation-delay: 0s;
+  }
+
+  .card-2 {
+    bottom: 15%;
+    left: -10%;
+    animation-delay: -3s;
+  }
+
+  .floating-emoji {
+    font-size: 1.2rem;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .about-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .about-text p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+  }
+
+  .highlight-item:hover {
+    background: var(--bg-glass-strong);
+    border-color: var(--border-accent);
+    transform: translateX(8px);
+  }
+
+  .highlight-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(108, 99, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--accent-primary);
+    flex-shrink: 0;
+  }
+
+  .highlight-item h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .highlight-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-3xl);
+    }
+
+    .image-wrapper {
+      width: 260px;
+      height: 320px;
+    }
+
+    .about-floating-card {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,306 @@
+---
+const experiences = [
+  {
+    role: "Senior Software Developer / Senior Full-Stack Engineer",
+    company: "Professional Experience",
+    period: "6+ Years",
+    description: "Full-stack software engineer specializing in scalable backend systems, SaaS architecture, API development, and modern web applications.",
+    achievements: [
+      "Designed and developed production-grade backend systems using PHP/Symfony, Laravel, Node.js, and Go",
+      "Built REST APIs and multi-tenant SaaS architectures with tenant isolation, RBAC, and secure authentication",
+      "Engineered a high-throughput GPS tracking backend handling approximately 140 requests/second",
+      "Implemented asynchronous architectures using RabbitMQ, Redis, and SQS for event-driven workflows",
+      "Designed PostgreSQL, MySQL, and MongoDB data models with complex migrations and query optimization",
+      "Implemented search infrastructure using Elasticsearch and OpenSearch for full-text and faceted search",
+      "Worked with Docker, Nginx, PHP-FPM, and cloud deployment infrastructure for production environments",
+      "Developed AI-powered functionality using LLM APIs, LangChain, LangGraph, and agent frameworks"
+    ],
+    tags: ["PHP", "Symfony", "Laravel", "Node.js", "NestJS", "Go", "React", "TypeScript", "PostgreSQL", "Redis", "Docker", "AWS"]
+  }
+];
+
+const techEcosystems = [
+  {
+    label: "Backend Ecosystems",
+    items: ["PHP · Symfony · Laravel · CodeIgniter", "Node.js · NestJS · Express.js", "Go"]
+  },
+  {
+    label: "Frontend Ecosystems",
+    items: ["React · TypeScript · Next.js", "Vite · Zustand", "HTML · CSS · JavaScript"]
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL · MySQL · MongoDB", "Redis · Elasticsearch · OpenSearch", "Doctrine ORM · TypeORM"]
+  },
+  {
+    label: "Infrastructure",
+    items: ["Docker · Nginx · PHP-FPM", "AWS · Render · Linux", "RabbitMQ · SQS · CI/CD"]
+  }
+];
+---
+
+<section class="experience section" id="experience">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-label">Career Path</span>
+      <h2 class="section-title">Work Experience</h2>
+      <p class="section-subtitle">
+        6+ years building production-grade software across multiple domains
+      </p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      {experiences.map((exp, index) => (
+        <div class="timeline-item animate-on-scroll" style={`--delay: ${index * 0.15}s`}>
+          <div class="timeline-dot">
+            <div class="dot-inner"></div>
+          </div>
+          <div class="timeline-card glass-card">
+            <div class="card-header">
+              <div>
+                <h3 class="exp-role">{exp.role}</h3>
+                <span class="exp-company-text">{exp.company}</span>
+              </div>
+              <span class="exp-period">{exp.period}</span>
+            </div>
+            <p class="exp-description">{exp.description}</p>
+            <ul class="exp-achievements">
+              {exp.achievements.map(achievement => (
+                <li>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-secondary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  {achievement}
+                </li>
+              ))}
+            </ul>
+            <div class="exp-tags">
+              {exp.tags.map(tag => (
+                <span class="exp-tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Tech Ecosystems Grid -->
+    <div class="ecosystems-grid animate-on-scroll">
+      <h3 class="ecosystems-title">Technology Ecosystems</h3>
+      <div class="ecosystems-cards">
+        {techEcosystems.map((eco, i) => (
+          <div class="eco-card glass-card">
+            <h4 class="eco-label">{eco.label}</h4>
+            <div class="eco-items">
+              {eco.items.map(item => (
+                <span class="eco-item">{item}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: var(--space-4xl);
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      var(--accent-primary),
+      var(--accent-secondary),
+      var(--accent-tertiary)
+    );
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 60px;
+    padding-bottom: var(--space-3xl);
+  }
+
+  .timeline-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 12px;
+    top: 28px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-primary);
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .timeline-card {
+    padding: var(--space-2xl);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .exp-role {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .exp-company-text {
+    color: var(--accent-primary);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+
+  .exp-period {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    padding: 0.25rem 0.75rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .exp-description {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--space-lg);
+    line-height: 1.7;
+  }
+
+  .exp-achievements {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .exp-achievements li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .exp-achievements li svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .exp-tag {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--accent-primary);
+    border: 1px solid rgba(108, 99, 255, 0.15);
+  }
+
+  /* Tech Ecosystems Grid */
+  .ecosystems-grid {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .ecosystems-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--space-xl);
+    color: var(--text-primary);
+  }
+
+  .ecosystems-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .eco-card {
+    padding: var(--space-xl);
+  }
+
+  .eco-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-md);
+  }
+
+  .eco-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .eco-item {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .timeline-item {
+      padding-left: 48px;
+    }
+
+    .card-header {
+      flex-direction: column;
+    }
+
+    .timeline-card {
+      padding: var(--space-xl);
+    }
+
+    .ecosystems-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,224 @@
+---
+const skillCategories = [
+  {
+    title: "Frontend",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>`,
+    skills: [
+      { name: "React", level: 90 },
+      { name: "TypeScript", level: 90 },
+      { name: "JavaScript", level: 92 },
+      { name: "Next.js", level: 85 },
+      { name: "HTML / CSS", level: 90 },
+      { name: "Vite", level: 85 },
+    ]
+  },
+  {
+    title: "Backend",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`,
+    skills: [
+      { name: "PHP / Symfony", level: 95 },
+      { name: "REST APIs", level: 95 },
+      { name: "Node.js / NestJS", level: 88 },
+      { name: "Laravel", level: 88 },
+      { name: "Express.js", level: 85 },
+      { name: "Go", level: 78 },
+    ]
+  },
+  {
+    title: "Databases & Data",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`,
+    skills: [
+      { name: "PostgreSQL", level: 88 },
+      { name: "Redis", level: 88 },
+      { name: "MySQL", level: 88 },
+      { name: "MongoDB", level: 85 },
+      { name: "Doctrine / TypeORM", level: 85 },
+      { name: "Elasticsearch", level: 78 },
+    ]
+  },
+  {
+    title: "DevOps & Infra",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
+    skills: [
+      { name: "Docker", level: 88 },
+      { name: "Git", level: 90 },
+      { name: "Linux / Ubuntu", level: 88 },
+      { name: "Nginx / PHP-FPM", level: 88 },
+      { name: "CI/CD", level: 85 },
+      { name: "AWS", level: 78 },
+    ]
+  },
+  {
+    title: "AI & Emerging Tech",
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1.27a7 7 0 0 1-12.46 0H6a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><circle cx="9.5" cy="15.5" r="1"/><circle cx="14.5" cy="15.5" r="1"/></svg>`,
+    skills: [
+      { name: "OpenAI / Claude APIs", level: 82 },
+      { name: "LangChain / LangGraph", level: 78 },
+      { name: "LLM Integration", level: 82 },
+      { name: "AI Agents", level: 78 },
+      { name: "RAG / ChromaDB", level: 75 },
+      { name: "RabbitMQ / SQS", level: 82 },
+    ]
+  }
+];
+
+const accentColors = [
+  'var(--accent-primary)',
+  'var(--accent-secondary)',
+  'var(--accent-tertiary)',
+  'var(--accent-warm)',
+  '#a78bfa'
+];
+---
+
+<section class="skills section" id="skills">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-label">Skills & Expertise</span>
+      <h2 class="section-title">My Tech Arsenal</h2>
+      <p class="section-subtitle">
+        Technologies and tools I use to build production-grade software
+      </p>
+    </div>
+
+    <div class="skills-grid stagger-children">
+      {skillCategories.map((category, catIndex) => (
+        <div class={`skill-category glass-card ${catIndex === 4 ? 'span-full' : ''}`}>
+          <div class="category-header">
+            <div class="category-icon" style={`color: ${accentColors[catIndex]}`}>
+              <Fragment set:html={category.icon} />
+            </div>
+            <h3 class="category-title">{category.title}</h3>
+          </div>
+          <div class="category-skills">
+            {category.skills.map((skill) => (
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name">{skill.name}</span>
+                  <span class="skill-level">{skill.level}%</span>
+                </div>
+                <div class="skill-bar">
+                  <div
+                    class="skill-progress"
+                    style={`--progress: ${skill.level}%; --accent: ${accentColors[catIndex]}`}
+                    data-progress={skill.level}
+                  ></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  // Animate skill bars on scroll
+  const skillBars = document.querySelectorAll('.skill-progress');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target as HTMLElement;
+        el.style.width = el.style.getPropertyValue('--progress');
+        skillObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  skillBars.forEach(bar => skillObserver.observe(bar));
+</script>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .skill-category {
+    padding: var(--space-2xl);
+  }
+
+  .skill-category.span-full {
+    grid-column: 1 / -1;
+  }
+
+  .span-full .category-skills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md) var(--space-2xl);
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .category-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(108, 99, 255, 0.1);
+    border-radius: var(--radius-md);
+  }
+
+  .category-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .category-skills {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  .skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .skill-level {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+  }
+
+  .skill-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+  }
+
+  .skill-progress {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, white));
+    border-radius: var(--radius-full);
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent) 50%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .span-full .category-skills {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

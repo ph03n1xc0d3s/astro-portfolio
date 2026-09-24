@@ -1,0 +1,188 @@
+---
+const projects = [
+  {
+    title: "Linxio GPS Backend",
+    description: "High-load GPS tracking backend designed to process location and tracking data at scale. Handles approximately 140 requests/second in production with real-time data processing and optimized database writes.",
+    tags: ["PHP", "Symfony", "PostgreSQL", "Redis", "Docker", "Nginx"],
+    image: "📡",
+    color: "var(--accent-primary)",
+    highlight: "~140 req/s",
+    featured: true
+  },
+  {
+    title: "RefundIQ",
+    description: "Multi-tenant SaaS platform focused on refund-related workflows, featuring role-based access control, tenant isolation, UUID-based entities, and AI-powered capabilities with OpenAI integration.",
+    tags: ["NestJS", "TypeScript", "React", "PostgreSQL", "Redis", "Docker", "OpenAI"],
+    image: "💰",
+    color: "var(--accent-secondary)",
+    highlight: "Multi-tenant SaaS",
+    featured: true
+  },
+  {
+    title: "AI Code Reviewer",
+    description: "AI-assisted code review system that analyzes source code and provides automated development feedback. Leverages large language models to identify issues, suggest improvements, and enforce coding standards.",
+    tags: ["AI", "LLMs", "LangChain", "GitHub", "Python"],
+    image: "🤖",
+    color: "var(--accent-tertiary)",
+    highlight: "LLM-Powered",
+    featured: true
+  },
+  {
+    title: "Server Monitoring Agent",
+    description: "A Go-based server monitoring agent for collecting and reporting system-level metrics. Lightweight daemon that tracks CPU, memory, disk, and network usage with configurable alerting thresholds.",
+    tags: ["Go", "Linux", "System Monitoring", "Backend"],
+    image: "📊",
+    color: "var(--accent-warm)",
+    highlight: "Go Agent",
+    featured: false
+  },
+  {
+    title: "Multi-Tenant SaaS Platform",
+    description: "Personal SaaS architecture project exploring scalable multi-tenant backend design with authentication, tenant isolation, modern API architecture, and production-ready deployment patterns.",
+    tags: ["Go", "PostgreSQL", "Redis", "Docker", "REST API"],
+    image: "🏗️",
+    color: "#a78bfa",
+    highlight: "Architecture",
+    featured: false
+  }
+];
+---
+
+<section class="projects section" id="projects">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-label">My Work</span>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">
+        Real-world systems built for scale, security, and performance
+      </p>
+    </div>
+
+    <div class="projects-grid stagger-children">
+      {projects.map((project) => (
+        <div class={`project-card glass-card ${project.featured ? 'featured' : ''}`}>
+          <div class="project-image" style={`--card-accent: ${project.color}`}>
+            <span class="project-emoji">{project.image}</span>
+            {project.highlight && (
+              <span class="project-badge" style={`background: ${project.color}`}>
+                {project.highlight}
+              </span>
+            )}
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+            <div class="project-tags">
+              {project.tags.map(tag => (
+                <span class="tag" style={`--tag-color: ${project.color}`}>{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .project-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card.featured {
+    grid-column: span 1;
+  }
+
+  .project-image {
+    position: relative;
+    height: 220px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--card-accent) 15%, var(--bg-secondary)),
+      var(--bg-secondary)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .project-emoji {
+    font-size: 4rem;
+    transition: transform var(--transition-base);
+  }
+
+  .project-card:hover .project-emoji {
+    transform: scale(1.2) rotate(-5deg);
+  }
+
+  .project-badge {
+    position: absolute;
+    top: var(--space-md);
+    right: var(--space-md);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .project-content {
+    padding: var(--space-xl);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    flex: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .tag {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--tag-color) 10%, transparent);
+    color: var(--tag-color);
+    border: 1px solid color-mix(in srgb, var(--tag-color) 20%, transparent);
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,197 @@
+---
+const blogPosts = [
+  {
+    title: "Building Scalable Microservices with Node.js and Docker",
+    excerpt: "A deep dive into designing, building, and deploying microservices architecture using Node.js, Docker, and Kubernetes for production-grade applications.",
+    date: "Sep 15, 2026",
+    readTime: "8 min read",
+    category: "Backend",
+    color: "var(--accent-primary)",
+    url: "#"
+  },
+  {
+    title: "The Art of CSS Animations: From Basics to Advanced",
+    excerpt: "Master CSS animations and transitions to create stunning user experiences. Learn keyframes, timing functions, and performance optimization techniques.",
+    date: "Aug 28, 2026",
+    readTime: "12 min read",
+    category: "Frontend",
+    color: "var(--accent-secondary)",
+    url: "#"
+  },
+  {
+    title: "Why Astro is the Future of Content-First Websites",
+    excerpt: "Explore how Astro's island architecture and zero-JS approach is revolutionizing the way we build fast, SEO-friendly websites.",
+    date: "Aug 10, 2026",
+    readTime: "6 min read",
+    category: "Web Dev",
+    color: "var(--accent-tertiary)",
+    url: "#"
+  }
+];
+---
+
+<section class="blog section" id="blog">
+  <div class="container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-label">Blog</span>
+      <h2 class="section-title">Latest Articles</h2>
+      <p class="section-subtitle">
+        Thoughts, tutorials, and insights from my development journey
+      </p>
+    </div>
+
+    <div class="blog-grid stagger-children">
+      {blogPosts.map((post) => (
+        <a href={post.url} class="blog-card glass-card">
+          <div class="blog-image" style={`--post-color: ${post.color}`}>
+            <span class="blog-category" style={`background: ${post.color}`}>{post.category}</span>
+            <div class="blog-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-date">{post.date}</span>
+              <span class="blog-dot">·</span>
+              <span class="blog-read-time">{post.readTime}</span>
+            </div>
+            <h3 class="blog-title">{post.title}</h3>
+            <p class="blog-excerpt">{post.excerpt}</p>
+            <span class="blog-read-more">
+              Read article
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .blog-card {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+  }
+
+  .blog-image {
+    height: 180px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--post-color) 15%, var(--bg-secondary)),
+      var(--bg-secondary)
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .blog-icon {
+    color: var(--text-muted);
+    opacity: 0.3;
+    transition: all var(--transition-base);
+  }
+
+  .blog-card:hover .blog-icon {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+
+  .blog-category {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: white;
+  }
+
+  .blog-content {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-date,
+  .blog-read-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .blog-dot {
+    color: var(--text-muted);
+  }
+
+  .blog-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+    line-height: 1.4;
+    transition: color var(--transition-fast);
+  }
+
+  .blog-card:hover .blog-title {
+    color: var(--accent-primary);
+  }
+
+  .blog-excerpt {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    flex: 1;
+    margin-bottom: var(--space-lg);
+  }
+
+  .blog-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    transition: gap var(--transition-base);
+  }
+
+  .blog-card:hover .blog-read-more {
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
